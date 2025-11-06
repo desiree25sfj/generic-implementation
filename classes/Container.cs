@@ -9,7 +9,6 @@ public class Container<T> : IStorable<T>
 	private List<T> items = new List<T>();
 
 	// Adds an item of type T to the internal list
-
 	public void Add(T item)
 	{
 		items.Add(item);
@@ -17,7 +16,6 @@ public class Container<T> : IStorable<T>
 
 	// Returns the item at the given index from the internal list
 	// Because T is generic, this method returns whatever type the container was created with
-
 	public T Get(int index)
 	{
 		return items[index];
@@ -25,11 +23,9 @@ public class Container<T> : IStorable<T>
 
 	// Property that returns how many items are stored
 	// This comes directly from items.Count
-
 	public int Count => items.Count;
 
 	// Checks whether the internal list contains the provided item
-
 	public bool Contains(T item)
 	{
 		return items.Contains(item);
