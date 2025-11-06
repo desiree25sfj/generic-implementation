@@ -9,6 +9,8 @@ intContainer.Add(30);
 
 // Count comes from the Container<T> class and returns how many items it stores
 Console.WriteLine($"The container has {intContainer.Count} numbers.");
+Console.WriteLine($"The max value is: {intContainer.GetMax()}");
+// Expected output: "The max value is: 30"
 
 // Get(index) retrieves an item from the internal list
 // Since this container stores ints, the returned value is an int
