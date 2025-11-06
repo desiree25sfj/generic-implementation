@@ -19,10 +19,11 @@ The comments were written as part of the learning process, to make it easier to 
 - Basic generic behaviour such as type safety and reusability.
 - A method ```GetMax()``` that returns the largest item in the container using a generic constraint (```where T : IComparable<T>```).
 - A method overload ```Add(params T [] newItems)``` that allows adding multiple items at once.
+- Implementation of ```IEnumerable<T>``` allowing ```foreach``` iteration over the container
 
 ## Files
 - Program.cs - Demonstrates how the generic class and interface are used
-- Container.cs - Implements the generic container with methods for adding, retrieving, counting and checking items
+- Container.cs - Implements the generic container with methods for adding, retrieving, counting, checking items, getting mac, adding multiple items, and iteration
 - IStorable.cs - Defines the interface used as the contract for the container
 
 ## Reflection: How this could be used in a real application
@@ -31,5 +32,6 @@ Generics like this are extremely useful in real-world projects:
 - Databases: Generic containers or repositories can simplify CRUD operations for different tables or models
 - Games: Generic containers could store inventories, scores, or any type of item that needs consistent storage and retrieval
 - Utilities: Functions like ```GetMax()``` or ```Contains()``` can be applied to any comparable data type, making the code reusable and type-safe
+- Iteration: Implementing ```IEnumerable<T>``` allows natural looping over items using ```foreach```, just like standard .NET collections
 
-By adding constraints (```where T : IComparable<T>```) and overloads (```Add(params T[] items)```), this project demonstrates how generics allow for both flexibility and safety.
+By adding constraints (```where T : IComparable<T>```) and overloads (```Add(params T[] items)```), and iteration support, this project demonstrates how generics allow for flexibility, safety and reusability.
