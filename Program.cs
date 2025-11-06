@@ -1,4 +1,6 @@
-﻿// Creating a Container<int> means we are using the generic class "Container"
+﻿using System;
+
+// Creating a Container<int> means we are using the generic class "Container"
 // with the type parameter T set to int. This instance can only store integers.
 Container<int> intContainer = new Container<int>();
 
@@ -58,3 +60,15 @@ Console.WriteLine($"Container now has {intContainer.Count} numbers.");
 // Adding multiple strings at once
 stringContainer.Add("Lunch", "Dinner", "Breakfast");
 Console.WriteLine($"Container now has {stringContainer.Count} words.");
+
+Console.WriteLine("Looping through intContainer with foreach:");
+foreach (var num in intContainer)
+{
+	Console.WriteLine(num);
+}
+
+Console.WriteLine("Looping through stringContainer with foreach:");
+foreach (var word in stringContainer)
+{
+	Console.WriteLine(word);
+}

@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 // Generic class definition
 // <T> means the class can store any type (int, string, custom classes...)
 // This class implements the interface IStorable<T>, meaning it must provide
 // Add(T), Get(int), Count and Contains(T).
-using System.Reflection.PortableExecutable;
-
-public class Container<T> : IStorable<T> where T : IComparable<T>
+public class Container<T> : IStorable<T>, IEnumerable<T> where T : IComparable<T>
 {
 	// Internal list that holds the items of type T
 	// This is the actual storage mechanism for the class
@@ -17,15 +19,25 @@ public class Container<T> : IStorable<T> where T : IComparable<T>
 	}
 
 	// Adds multiple items to the container at once
-	// The 'params' keyword allows calloer to pass in any number of T values,
+	// The 'params' keyword allows caller to pass in any number of T values,
 	// either as separate arguments or as an array
 	public void Add(params T[] newItems)
 	{
-		foreach (T item in newItems) 
+		foreach (T item in newItems)
 		{
 			items.Add(item);
 		}
 	}
+
+	public IEnumerator<T> GetEnumerator()
+	{
+		// Loop through each item in the internal list and yield it
+		foreach (T item in items)
+			yield return item;
+	}
+
+	// Non-generic version required by IEnumerable
+	IEnumerator IEnumerable.GetEnumerator () => GetEnumerator();
 
 	// Returns the item at the given index from the internal list
 	// Because T is generic, this method returns whatever type the container was created with
@@ -44,9 +56,9 @@ public class Container<T> : IStorable<T> where T : IComparable<T>
 		return items.Contains(item);
 	}
 
-	// This method finds the larget item in the container
+	// This method finds the largest item in the container
 	// It works because we know T implements IComparable<T>
-	// If the container is empty, it throws an exception to avoid returning an invald value
+	// If the container is empty, it throws an exception to avoid returning an invalid value
 	public T GetMax()
 	{
 		if (items.Count == 0)
