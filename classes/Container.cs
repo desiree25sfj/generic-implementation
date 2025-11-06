@@ -1,4 +1,6 @@
-public class Container<T>
+using System.Runtime.CompilerServices;
+
+public class Container<T> : IStorable<T>
 {
 	private List<T> items = new List<T>();
 

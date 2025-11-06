@@ -13,3 +13,15 @@ stringContainer.Add("World");
 
 Console.WriteLine($"The container has {stringContainer.Count} words.");
 Console.WriteLine($"The first word is: {stringContainer.Get(0)}");
+
+IStorable<int> store = new Container<int>();
+store.Add(10);
+store.Add(20);
+
+Console.WriteLine(store.Get(0));
+
+IStorable<string> words = new Container<string>();
+words.Add("Interface");
+words.Add("Magic");
+
+Console.WriteLine($"Stored via interface: {words.Get(1)}");
