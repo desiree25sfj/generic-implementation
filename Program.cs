@@ -50,3 +50,11 @@ Console.WriteLine($"Stored via interface: {words.Get(1)}");
 // Contains(item) checks if the value exists in the container
 Console.WriteLine(words.Contains("Magic")); // should be true
 Console.WriteLine(words.Contains("Chaos")); // should be false, because it was never added
+
+// Adding several integers in one call
+intContainer.Add(40, 50, 60);
+Console.WriteLine($"Container now has {intContainer.Count} numbers.");
+
+// Adding multiple strings at once
+stringContainer.Add("Lunch", "Dinner", "Breakfast");
+Console.WriteLine($"Container now has {stringContainer.Count} words.");

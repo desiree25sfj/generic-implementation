@@ -16,6 +16,17 @@ public class Container<T> : IStorable<T> where T : IComparable<T>
 		items.Add(item);
 	}
 
+	// Adds multiple items to the container at once
+	// The 'params' keyword allows calloer to pass in any number of T values,
+	// either as separate arguments or as an array
+	public void Add(params T[] newItems)
+	{
+		foreach (T item in newItems) 
+		{
+			items.Add(item);
+		}
+	}
+
 	// Returns the item at the given index from the internal list
 	// Because T is generic, this method returns whatever type the container was created with
 	public T Get(int index)
