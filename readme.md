@@ -23,7 +23,7 @@ The comments were written as part of the learning process, to make it easier to 
 
 ## Files
 - Program.cs - Demonstrates how the generic class and interface are used
-- Container.cs - Implements the generic container with methods for adding, retrieving, counting, checking items, getting mac, adding multiple items, and iteration
+- Container.cs - Implements the generic container with methods for adding, retrieving, counting, checking items, getting max, adding multiple items, and iteration
 - IStorable.cs - Defines the interface used as the contract for the container
 
 ## Reflection: How this could be used in a real application
