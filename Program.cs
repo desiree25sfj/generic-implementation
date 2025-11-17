@@ -1,54 +1,35 @@
 ﻿using System;
 
-Container<int> intContainer = new Container<int>();
+var shelf = new Inventory<Potion>();
 
-intContainer.Add(10);
-intContainer.Add(20);
-intContainer.Add(30);
+shelf.Add(
+    new Potion("Healing Potion", 25),
+    new Potion("Mana Elixir", 40),
+    new Potion("Dragonfire Tonic", 80)
+);
 
-Console.WriteLine($"The container has {intContainer.Count} numbers.");
-Console.WriteLine($"The max value is: {intContainer.GetMax()}");
+Console.WriteLine($"The shop inventory contains {shelf.Count} potions.");
 
-Console.WriteLine($"The first number is: {intContainer.Get(0)}");
-Console.WriteLine($"The second number is: {intContainer.Get(1)}");
-
-Container<string> stringContainer = new Container<string>();
-
-stringContainer.Add("Hello");
-stringContainer.Add("World");
-
-Console.WriteLine($"The container has {stringContainer.Count} words.");
-Console.WriteLine($"The first word is: {stringContainer.Get(0)}");
-
-IStorable<int> store = new Container<int>();
-store.Add(10);
-store.Add(20);
-
-Console.WriteLine(store.Get(0));
-
-IStorable<string> words = new Container<string>();
-words.Add("Interface");
-words.Add("Magic");
-
-Console.WriteLine($"Stored via interface: {words.Get(1)}");
-
-Console.WriteLine(words.Contains("Magic"));
-Console.WriteLine(words.Contains("Chaos"));
-
-intContainer.Add(40, 50, 60);
-Console.WriteLine($"Container now has {intContainer.Count} numbers.");
-
-stringContainer.Add("Lunch", "Dinner", "Breakfast");
-Console.WriteLine($"Container now has {stringContainer.Count} words.");
-
-Console.WriteLine("Looping through intContainer with foreach:");
-foreach (var num in intContainer)
+Console.WriteLine("\nAll potions on the shelf:");
+foreach (var potion in shelf)
 {
-	Console.WriteLine(num);
+    Console.WriteLine(potion);
 }
 
-Console.WriteLine("Looping through stringContainer with foreach:");
-foreach (var word in stringContainer)
+Console.WriteLine($"\nThe strongest potion is: {shelf.GetMax()}");
+
+if (shelf.TryGet(1, out var secondPotion))
 {
-	Console.WriteLine(word);
+    Console.WriteLine($"\nPotion at shelf index 1: {secondPotion}");
+}
+
+Console.WriteLine("\nRemoving the first potion from the shelf...");
+shelf.RemoveAt(0);
+
+Console.WriteLine($"Potions left: {shelf.Count}");
+
+Console.WriteLine("\nSnapshot of current shelf (read-only view):");
+foreach (var item in shelf.Items)
+{
+    Console.WriteLine(item);
 }
