@@ -16,6 +16,6 @@ public class InventoryTests
 		// Assert
 		Assert.Equal(1, shelf.Count);
 		Assert.True(shelf.Contains(potion));
-		Assert.Equal(potion. shelf.Get(+));
+		Assert.Equal(potion, shelf.Get(0));
 	}
 }
