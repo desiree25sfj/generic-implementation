@@ -20,6 +20,26 @@ public class InventoryTests
 		Assert.Equal(potion, shelf.Get(0));
 	}
 
+	// Test to verify that adding multiple potions via params works correctly
+	[Fact]
+	public void AddParams_AddsMultiplePotionsInOrder()
+	{
+		// Arrange
+		var inventory = new Inventory<Potion>();
+		var p1 = new Potion("Swiftness Potion", 10);
+		var p2 = new Potion("Invisibility Draught", 25);
+		var p3 = new Potion("Giant Strength Brew", 50);
+
+		// Act
+		inventory.Add(p1, p2, p3);
+
+		// Assert
+		Assert.Equal(3, inventory.Count);
+		Assert.Equal(p1, inventory.Get(0));
+		Assert.Equal(p2, inventory.Get(1));
+		Assert.Equal(p3, inventory.Get(2));
+	}
+
 	// Test to verify that removing a potion by index works correctly
 	[Fact]
 	public void RemoveAt_RemovesCorrectPotion_AndShiftsIndexes()
@@ -64,6 +84,7 @@ public class InventoryTests
 		Assert.Equal("Elixir of Titan Strength", maxPotion.Name);
 		Assert.Equal(50, maxPotion.Potency);
 	}
+
 
 	// Parameterized test to check TryGet with various indexes
 	[Theory]
