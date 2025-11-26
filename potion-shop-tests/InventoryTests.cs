@@ -98,6 +98,22 @@ public class InventoryTests
 		Assert.Equal(50, maxPotion.Potency);
 	}
 
+	// Test to verify that Contains only returns true for the same instance
+	[Fact]
+	public void Contains_ReturnsTrueOnlyForSameInstance()
+	{
+		// Arrange
+		var inventory = new Inventory<Potion>();
+		var p1 = new Potion("Healing Potion", 10);
+		var p2 = new Potion("Healing Potion", 10); // Different instance but same properties
+
+		// Act
+		inventory.Add(p1);
+
+		// Assert
+		Assert.True(inventory.Contains(p1));
+		Assert.False(inventory.Contains(p2));
+	}
 
 	// Parameterized test to check TryGet with various indexes
 	[Theory]
