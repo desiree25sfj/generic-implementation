@@ -115,6 +115,42 @@ public class InventoryTests
 		Assert.False(inventory.Contains(p2));
 	}
 
+	// Test to verify that enumerator iterates through all items in order
+	[Fact]
+	public void Enumerator_IteratesThroughAllItemsInOrder()
+	{
+		// Arrange
+		var inventory = new Inventory<Potion>();
+		var p1 = new Potion("A", 1);
+		var p2 = new Potion("B", 2);
+
+		inventory.Add(p1);
+		inventory.Add(p2);
+
+		// Act
+		var names = new List<string>();
+		foreach (var p in inventory)
+			names.Add(p.Name!);
+
+		// Assert
+		Assert.Equal(new[] { "A", "B" }, names);
+	}
+
+	// Test to verify that Items property returns a read-only collection
+	[Fact]
+	public void ItemsIsReadOnly_AndCannotBeModified()
+	{
+		// Arrange
+		var inventory = new Inventory<Potion>();
+		inventory.Add(new Potion("Lockpicking Elixir", 5));
+
+		var view = inventory.Items; // read-only view
+
+		// Act + Assert
+		Assert.Throws<NotSupportedException>(() => { view.RemoveAt(0); });
+		Assert.Equal(1, inventory.Count);
+	}
+
 	// Parameterized test to check TryGet with various indexes
 	[Theory]
 	[InlineData(-1, false)]
