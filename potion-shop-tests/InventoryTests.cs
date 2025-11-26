@@ -63,6 +63,19 @@ public class InventoryTests
 		Assert.Equal("Stamina Tonic", potion.Name);
 	}
 
+// Test to verify that getting a potion by invalid index throws an exception
+	[Fact]
+	public void Get_InvalidIndex_ThrowsArgumentOutOfRange()
+	{
+		// Arrange
+		var inventory = new Inventory<Potion>();
+		inventory.Add(new Potion("Dragon's Breath Elixir", 40));
+
+		// Act + Assert
+		Assert.Throws<ArgumentOutOfRangeException>(() => inventory.Get(-1));
+		Assert.Throws<ArgumentOutOfRangeException>(() => inventory.Get(10));
+	}
+
 	// Test generic constraint and CompareTo implementation indirectly via GetMax
 	[Fact]
 	public void GetMax_ReturnsPotionWithHighestPotency()
